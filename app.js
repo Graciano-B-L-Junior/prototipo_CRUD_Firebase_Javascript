@@ -1,4 +1,4 @@
-const submit = document.getElementById('submit');
+/*const submit = document.getElementById('submit');
 const inline = document.getElementById('inline')
 
 submit.addEventListener('click',(e)=>{
@@ -39,5 +39,25 @@ function renderDoc(doc){
     inline.after(senhaHTML)
     inline.after(loginHTML)
 }
+*/
 
+const enviar = document.getElementById('submit')
+
+enviar.addEventListener('click', (e) => {
+    var loginEfetuado = false;
+    var login = document.getElementById('login')
+    var senha = document.getElementById('senha')
+
+    db.collection('usuarios').where('login', '==', login.value)
+        .where('senha', '==', senha.value)
+        .get().then(async(data) => {
+            await data.forEach(d => {
+                alert('login efetuado')
+            })
+        })
+    login.value = ''
+    senha.value = ''
+    e.preventDefault();
+
+})
 
